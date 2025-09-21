@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "tech-challenge-machine-learning"
+version = "0.1.0"
+description = ""
+authors = ["fernando-lfs <fernando.l.f@outlook.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.3.2"
+matplotlib = "^3.10.6"
+seaborn = "^0.13.2"
+jupyter = "^1.1.1"
+boto3 = "<2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
