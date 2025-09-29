@@ -60,8 +60,9 @@ Para replicar o ambiente e executar a análise, siga os passos abaixo.
 ### **Pré-requisitos**
 
   * [Git](https://git-scm.com/)
-  * [Python 3.x](https://www.python.org/)
+  * [Python 3.10.x](https://www.python.org/)
   * [Poetry](https://www.google.com/search?q=https://python-poetry.org/docs/%23installation) instalado e configurado.
+  * [MinIO Server](https://www.min.io/download) baixado e disponível na pasta `minio/` do projeto.
 
 ### **1. Clone o Repositório**
 
@@ -88,13 +89,12 @@ Este projeto utiliza o MinIO para simular um ambiente de armazenamento em nuvem 
     ```bash
     .\minio\minio.exe server .\minio\data --console-address ":9090"
     ```
-
-2.  **Acesse o Console e Faça o Upload:**
-
-      * Abra seu navegador e acesse `http://localhost:9090`.
-      * Use as credenciais padrão (`minioadmin`/`minioadmin`) para fazer login.
-      * Crie um novo bucket com o nome `student-stress`.
-      * Dentro do bucket `student-stress`, faça o upload do arquivo `StressLevelDataset.csv` que está na pasta `/data` do projeto.
+2.  **Configure o Ambiente MinIO Automaticamente:**
+    Em um **novo terminal**, na raiz do projeto, execute o script de setup. Este comando irá criar o bucket e fazer o upload do dataset `StressLevelDataset.csv` automaticamente.
+    ```bash
+    poetry run python setup.py
+    ```
+    Você só precisa executar este comando uma vez.
 
 ### **4. Execute a Análise Exploratória**
 
