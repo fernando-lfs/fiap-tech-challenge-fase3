@@ -1,5 +1,6 @@
 # MinIo Folder
-minio/
+minio/*
+!/minio/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 **/__pycache__/

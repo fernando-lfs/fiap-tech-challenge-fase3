@@ -83,14 +83,14 @@ poetry install
 
 Este projeto utiliza o MinIO para simular um ambiente de armazenamento em nuvem (como o AWS S3), garantindo que o projeto seja 100% reprodutível.
 
-1.  **Inicie o servidor MinIO:**
-    Abra um novo terminal na raiz do projeto e execute o comando abaixo.
-
+1.  **Inicie o Servidor de Armazenamento (MinIO):**
+    Abra um terminal na raiz do projeto e execute o comando abaixo para iniciar o servidor MinIO. **Mantenha este terminal aberto** durante a execução do projeto.
     ```bash
     .\minio\minio.exe server .\minio\data --console-address ":9090"
     ```
+
 2.  **Configure o Ambiente MinIO Automaticamente:**
-    Em um **novo terminal**, na raiz do projeto, execute o script de setup. Este comando irá criar o bucket e fazer o upload do dataset `StressLevelDataset.csv` automaticamente.
+    Em um **novo terminal**, na raiz do projeto, execute o script de setup. Este comando irá criar o bucket e fazer o upload do dataset `StressLevelDataset.csv` [cite: 35] automaticamente.
     ```bash
     poetry run python setup.py
     ```
