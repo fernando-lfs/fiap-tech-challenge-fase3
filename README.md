@@ -1,122 +1,211 @@
 # 🎓 Análise e Previsão de Fatores de Estresse em Estudantes
 
-Este repositório contém o desenvolvimento de um projeto de Machine Learning para a Pós-Graduação em Engenharia de Machine Learning da FIAP. O objetivo é criar uma solução de ponta a ponta, desde a definição do problema até a implantação de um modelo preditivo.
+Este projeto desenvolve uma solução completa de Machine Learning para identificar proativamente estudantes em risco de estresse elevado, criado para o Tech Challenge da Fase 3 da Pós-Graduação em Engenharia de Machine Learning da FIAP.
 
-## 📝 Sobre o Projeto
+---
 
-O estresse acadêmico é um desafio crescente que afeta o bem-estar e o desempenho dos estudantes. Este projeto visa desenvolver uma solução baseada em dados que permita a instituições de ensino **identificar proativamente estudantes com risco de estresse elevado**.
+## 📋 Índice
 
-Através de um modelo de classificação, a ferramenta poderá prever o nível de estresse (Baixo, Médio ou Alto) com base em diversos fatores psicométricos e hábitos de vida, possibilitando a criação de programas de apoio mais direcionados e eficazes.
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Principais Funcionalidades](#-principais-funcionalidades)
+- [Stack Tecnológica](#%EF%B8%8F-stack-tecnológica)
+- [Estrutura do Repositório](#-estrutura-do-repositório)
+- [Instalação e Configuração](#-instalação-e-configuração)
+- [Resultados e Pipeline](#-resultados-e-pipeline)
+- [Fonte dos Dados](#-fonte-dos-dados)
+- [Licença](#%EF%B8%8F-licença)
 
-### 🎯 Status do Projeto
+---
 
-O projeto está sendo desenvolvido em fases, seguindo uma pipeline de Machine Learning bem definida. O status atual é:
+## 🎯 Sobre o Projeto
 
-  * **Fase 1: Definição do Problema** - ✅ Concluída
-  * **Fase 2: Coleta de Dados** - ✅ Concluída
-  * **Fase 3: Armazenamento dos Dados** - ✅ Concluída
-  * **Fase 4: Análise Exploratória de Dados (EDA)** - ⏳ Em Andamento
-  * **Fase 5: Pré-processamento e Engenharia de Features** - 📋 A Fazer
-  * **Fase 6: Modelagem, Treinamento e Avaliação** - 📋 A Fazer
-  * **Fase 7: Deploy (Implantação)** - 📋 A Fazer
+O estresse acadêmico impacta diretamente o bem-estar e o desempenho dos estudantes. Este projeto oferece uma ferramenta baseada em dados para que instituições de ensino possam identificar estudantes vulneráveis e criar programas de apoio direcionados.
 
-## 🛠️ Tecnologias Utilizadas
+A solução utiliza um modelo de classificação que prevê o nível de estresse (**Baixo**, **Médio** ou **Alto**) a partir de 20 variáveis relacionadas a fatores psicométricos e hábitos de vida. O resultado é acessível através de um dashboard interativo onde é possível simular cenários e obter previsões em tempo real.
 
-Este projeto utiliza um conjunto de ferramentas modernas para garantir a reprodutibilidade e a eficiência do desenvolvimento:
+---
 
-  * **🐍 Python 3:** Linguagem principal para análise e modelagem.
-  * **📦 Poetry:** Gerenciador de dependências e ambientes virtuais.
-  * **📓 Jupyter Notebooks:** Para análise exploratória de dados e experimentação.
-  * **💾 MinIO:** Sistema de armazenamento de objetos S3-compatível, usado para desacoplar os dados do código.
-  * **📊 Pandas, Matplotlib, Seaborn:** Bibliotecas para manipulação e visualização de dados.
-  * **🤖 Scikit-Learn:** Framework para treinamento e avaliação dos modelos de Machine Learning.
+## ✨ Principais Funcionalidades
+
+- **Análise Exploratória Completa**: Notebook Jupyter com investigação detalhada das relações entre variáveis e qualidade dos dados
+- **Modelo Preditivo de Alta Performance**: Random Forest com **89% de acurácia** na classificação dos níveis de estresse
+- **Interface Interativa**: Dashboard web desenvolvido em Streamlit, permitindo simulações e previsões instantâneas sem conhecimento técnico
+
+---
+
+## 🛠️ Stack Tecnológica
+
+### Ambiente e Linguagem
+- **Python 3.10**
+- **Poetry**: gerenciamento de dependências e ambientes virtuais
+- **Jupyter Notebook**: análise exploratória e experimentação
+
+### Dados e Armazenamento
+- **MinIO**: sistema de armazenamento de objetos S3-compatível para desacoplamento de dados e código
+
+### Análise e Visualização
+- **Pandas**: manipulação e análise de dados
+- **Matplotlib & Seaborn**: visualizações e gráficos
+
+### Machine Learning
+- **Scikit-Learn**: treinamento, validação e avaliação de modelos
+- **Joblib**: serialização e carregamento de modelos
+
+### Deploy
+- **Streamlit**: framework para construção do dashboard interativo
+
+---
 
 ## 📂 Estrutura do Repositório
 
-O projeto está organizado da seguinte forma para garantir clareza e separação de responsabilidades:
-
 ```
 .
-│   .gitignore
-│   README.md
-│   poetry.lock
-│   pyproject.toml
+├── .gitignore
+├── README.md
+├── poetry.lock
+├── pyproject.toml
+├── config.py                               ## Dicionário tradução features
 │
-├───data
-│   └─── StressLevelDataset.csv
+├── dashboard/
+│   └── app.py                              # Aplicação Streamlit
 │
-├───minio
-│   ├─── data
-│   └─── minio.exe
+├── data/
+│   └── StressLevelDataset.csv              # Dataset original
 │
-└───notebooks
-    └─── 01-analise-exploratoria.ipynb
+├── minio/
+│   ├── data/                               # Dados do MinIO
+│   └── minio.exe                           # Servidor MinIO
+│
+├── models/
+│   └── student_stress_rf_model.joblib      # Modelo treinado
+│
+├── notebooks/
+│   └── 01-analise-exploratoria.ipynb       # Análise exploratória
+│
+└── scripts/
+    └── setup_minio.py                      # Configuração do MinIO
 ```
 
-## 🚀 Como Executar o Projeto
+---
 
-Para replicar o ambiente e executar a análise, siga os passos abaixo.
+## 🚀 Instalação e Configuração
 
-### **Pré-requisitos**
+### Pré-requisitos
 
-  * [Git](https://git-scm.com/)
-  * [Python 3.10.x](https://www.python.org/)
-  * [Poetry](https://www.google.com/search?q=https://python-poetry.org/docs/%23installation) instalado e configurado.
-  * [MinIO Server](https://www.min.io/download) baixado e disponível na pasta `minio/` do projeto.
+Certifique-se de ter instalado:
+- [Git](https://git-scm.com/)
+- [Python 3.10.x](https://www.python.org/)
+- [Poetry](https://python-poetry.org/docs/#installation)
+- [MinIO Server](https://min.io/download) (baixar e colocar na pasta `minio/`)
 
-### **1. Clone o Repositório**
+### Passo 1: Clone o Repositório
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
-cd <NOME_DO_SEU_REPOSITORIO>
+git clone <URL_DO_REPOSITORIO>
+cd <NOME_DO_REPOSITORIO>
 ```
 
-### **2. Instale as Dependências**
+### Passo 2: Instale as Dependências
 
-O Poetry cuidará da criação do ambiente virtual e da instalação de todas as bibliotecas necessárias.
+O Poetry criará automaticamente um ambiente virtual isolado:
 
 ```bash
 poetry install
 ```
 
-### **3. Configure e Inicie o Armazenamento de Dados (MinIO)**
+### Passo 3: Configure o MinIO
 
-Este projeto utiliza o MinIO para simular um ambiente de armazenamento em nuvem (como o AWS S3), garantindo que o projeto seja 100% reprodutível.
+O MinIO simula um ambiente de armazenamento em nuvem, garantindo reprodutibilidade.
 
-1.  **Inicie o Servidor de Armazenamento (MinIO):**
-    Abra um terminal na raiz do projeto e execute o comando abaixo para iniciar o servidor MinIO. **Mantenha este terminal aberto** durante a execução do projeto.
-    ```bash
-    .\minio\minio.exe server .\minio\data --console-address ":9090"
-    ```
+**3.1. Inicie o servidor MinIO**
 
-2.  **Configure o Ambiente MinIO Automaticamente:**
-    Em um **novo terminal**, na raiz do projeto, execute o script de setup. Este comando irá criar o bucket e fazer o upload do dataset `StressLevelDataset.csv` [cite: 35] automaticamente.
-    ```bash
-    poetry run python setup.py
-    ```
-    Você só precisa executar este comando uma vez.
+Em um terminal, execute (mantenha este terminal aberto):
 
-### **4. Execute a Análise Exploratória**
+```bash
+.\minio\minio.exe server .\minio\data --console-address ":9090"
+```
 
-Com o servidor MinIO rodando e as dependências instaladas, você pode iniciar a análise.
+**3.2. Configure o bucket e faça upload dos dados**
 
-1.  **Ative o ambiente virtual do Poetry:**
+Em um **novo terminal**, execute o script de setup. Ele criará o bucket `student-stress` e fará o upload do dataset `StressLevelDataset.csv` automaticamente.
 
-    ```bash
-    poetry shell
-    ```
+```bash
+poetry run python scripts/setup_minio.py
+```
 
-2.  **Inicie o Jupyter Notebook (via VSCode):**
+> **Nota**: Este comando precisa ser executado apenas uma vez.
 
-      * Abra o arquivo `notebooks/01-analise-exploratoria.ipynb` no VSCode.
-      * Certifique-se de que o Kernel do Jupyter está apontando para o ambiente virtual criado pelo Poetry.
-      * Agora você pode executar as células do notebook para carregar os dados do MinIO e realizar a análise.
+### Passo 4: Execute o Dashboard
 
-## 📊 Fonte dos Dados
+Com o MinIO em execução, inicie a aplicação:
 
-O dataset utilizado neste projeto foi obtido da plataforma Kaggle e está disponível publicamente:
+```bash
+poetry run streamlit run dashboard/app.py
+```
 
-  * **Nome:** [Student Stress Factors - A Comprehensive Analysis](https://www.kaggle.com/datasets/rxnach/student-stress-factors-a-comprehensive-analysis/data)
-  * **Proprietário:** RUCHI NACHANKAR
+O dashboard será aberto automaticamente no seu navegador padrão.
 
-A escolha de um dataset público otimizou o tempo do projeto, permitindo focar nas etapas de modelagem e deploy, que são o escopo principal do desafio.
+### (Opcional) Passo 5: Explore a Análise de Dados
+
+Para executar o notebook de análise exploratória:
+
+1. Ative o ambiente virtual:
+   ```bash
+   poetry shell
+   ```
+
+2. Abra o notebook no VSCode ou Jupyter:
+   - Arquivo: `notebooks/01-analise-exploratoria.ipynb`
+   - Selecione o kernel do ambiente Poetry
+   - Execute as células para carregar os dados do MinIO e visualizar as análises
+
+---
+
+## 📊 Resultados e Pipeline
+
+O desenvolvimento seguiu um pipeline estruturado de Machine Learning:
+
+### 1. Definição do Problema
+Classificação multiclasse para prever o nível de estresse em três categorias: Baixo, Médio e Alto.
+
+### 2. Coleta e Armazenamento
+Dataset público do Kaggle armazenado em servidor MinIO local, simulando ambiente de produção.
+
+### 3. Análise Exploratória
+A análise revelou um dataset de excelente qualidade:
+- Sem valores ausentes ou duplicados
+- Balanceamento perfeito entre as classes
+- 20 features relevantes e correlacionadas com a variável-alvo
+
+### 4. Pré-processamento
+Divisão estratificada dos dados em treino (80%) e teste (20%), mantendo a proporção das classes.
+
+### 5. Modelagem
+Três modelos foram treinados e comparados:
+- **DummyClassifier** (baseline)
+- **DecisionTreeClassifier**
+- **RandomForestClassifier** ✅
+
+O Random Forest foi selecionado por apresentar o melhor desempenho, com **89% de acurácia**.
+
+### 6. Deploy
+Modelo disponibilizado através de dashboard interativo em Streamlit, permitindo previsões em tempo real com interface intuitiva.
+
+---
+
+## 📚 Fonte dos Dados
+
+Dataset público disponível no Kaggle:
+
+**[Student Stress Factors - A Comprehensive Analysis](https://www.kaggle.com/datasets/rxnach/student-stress-factors-a-comprehensive-analysis/data)**  
+Autor: RUCHI NACHANKAR
+
+A escolha de um dataset público permitiu focar nas etapas de modelagem e deploy, que são o escopo principal do desafio.
+
+---
+
+## ⚖️ Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
+---

@@ -52,7 +52,7 @@ user_inputs = {}
 # são baseados na escala original do dataset (geralmente de 0 a 5).
 
 feature_explainer = {
-    "anxiety_level": "Nível de Ansiedade\n(0: baixo a 5: muito alto)",
+    "anxiety_level": "Nível de Ansiedade (0: baixo a 5: muito alto)",
     "self_esteem": "Nível de Autoestima\n(0: baixa a 5: muito alta)",
     "mental_health_history": "Histórico de Saúde Mental\n(0: Não, 1: Sim)",
     "depression": "Nível de Depressão\n(0: baixo a 5: muito alto)",
