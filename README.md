@@ -80,7 +80,7 @@ A solução utiliza um modelo de classificação que prevê o nível de estresse
 │   └── student_stress_rf_model.joblib      # Modelo treinado
 │
 ├── notebooks/
-│   └── 01-analise-exploratoria.ipynb       # Análise exploratória
+│   └── projeto_estresse_estudantes.ipynb       # Análise exploratória
 │
 └── scripts/
     └── setup_minio.py                      # Configuração do MinIO
@@ -155,7 +155,7 @@ Para executar o notebook de análise exploratória:
    ```
 
 2. Abra o notebook no VSCode ou Jupyter:
-   - Arquivo: `notebooks/01-analise-exploratoria.ipynb`
+   - Arquivo: `notebooks/projeto_estresse_estudantes.ipynb`
    - Selecione o kernel do ambiente Poetry
    - Execute as células para carregar os dados do MinIO e visualizar as análises
 
