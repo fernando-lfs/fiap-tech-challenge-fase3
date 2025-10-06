@@ -103,6 +103,36 @@ FEATURE_CONFIG = {
 # A ordem das features é derivada diretamente da configuração para garantir consistência.
 FEATURE_ORDER = list(FEATURE_CONFIG.keys())
 
+# --- NOVO: Estrutura para categorizar as features na interface ---
+FEATURE_CATEGORIES = {
+    "🧠 Fatores Psicológicos e de Saúde Mental": [
+        "anxiety_level",
+        "depression",
+        "self_esteem",
+        "mental_health_history",
+    ],
+    "🎓 Fatores Acadêmicos e de Carreira": [
+        "academic_performance",
+        "study_load",
+        "teacher_student_relationship",
+        "future_career_concerns",
+        "extracurricular_activities",
+    ],
+    "❤️ Fatores Sociais e de Relacionamento": [
+        "social_support",
+        "bullying",
+        "peer_pressure",
+    ],
+    "🌿 Fatores de Bem-Estar e Ambiente": [
+        "sleep_quality",
+        "living_conditions",
+        "safety",
+        "basic_needs",
+        "noise_level",
+    ],
+    "🩺 Sintomas Fisiológicos": ["headache", "breathing_problem", "blood_pressure"],
+}
+
 
 # -----------------------------------------------------------------------------
 # 2. Carregamento do Modelo
@@ -133,28 +163,35 @@ st.set_page_config(
 model = load_model(MODEL_PATH)
 
 
-# --- Interface da Sidebar ---
+# --- Interface da Sidebar (com categorias) ---
 with st.sidebar:
     st.title("Parâmetros do Estudante")
     st.markdown("Ajuste os valores para simular o perfil de um estudante.")
 
     user_inputs = {}
-    # Loop simplificado que utiliza a estrutura de FEATURE_CONFIG
-    for feature, config in FEATURE_CONFIG.items():
-        user_inputs[feature] = st.slider(
-            label=config["label"],
-            min_value=0,
-            max_value=config["max_val"],
-            value=config["max_val"] // 2,  # Padrão: meio da escala
-            step=1,
-        )
+
+    # Itera sobre as categorias definidas
+    for category, features_in_category in FEATURE_CATEGORIES.items():
+        st.subheader(category)
+        # Itera sobre as features dentro de cada categoria
+        for feature in features_in_category:
+            config = FEATURE_CONFIG[feature]
+            user_inputs[feature] = st.slider(
+                label=config["label"],
+                min_value=0,
+                max_value=config["max_val"],
+                value=config["max_val"] // 2,  # Padrão: meio da escala
+                step=1,
+            )
+    st.divider()
+
 
 # --- Interface da Área Principal ---
-st.title("Sistema de Previsão de Estresse em Estudantes 🧠")
+st.title("Sistema de Previsão de Estresse em Estudantes")
 st.markdown(
     """
 Esta aplicação utiliza um modelo de *Random Forest* para prever o nível de estresse 
-de um estudante com base em fatores psicológicos, sociais e ambientais.
+de um estudante com base em fatores acadêmicos, psicológicos, sociais, fisiológicos e ambientais.
 
 **Como usar:**
 1. Ajuste os parâmetros na barra lateral esquerda.
