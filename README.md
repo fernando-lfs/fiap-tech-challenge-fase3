@@ -11,9 +11,7 @@ Este projeto desenvolve uma solução completa de Machine Learning para identifi
 - [Stack Tecnológica](#%EF%B8%8F-stack-tecnológica)
 - [Estrutura do Repositório](#-estrutura-do-repositório)
 - [Instalação e Configuração](#-instalação-e-configuração)
-- [Resultados e Pipeline](#-resultados-e-pipeline)
 - [Fonte dos Dados](#-fonte-dos-dados)
-- [Licença](#%EF%B8%8F-licença)
 
 ---
 
@@ -29,7 +27,7 @@ A solução utiliza um modelo de classificação que prevê o nível de estresse
 
 - **Análise Exploratória Completa**: Notebook Jupyter com investigação detalhada das relações entre variáveis e qualidade dos dados
 - **Modelo Preditivo de Alta Performance**: Random Forest com **89% de acurácia** na classificação dos níveis de estresse
-- **Interface Interativa**: Dashboard web desenvolvido em Streamlit, permitindo simulações e previsões instantâneas sem conhecimento técnico
+- **Interface Interativa**: Dashboard web desenvolvido em Streamlit, disponibilizando o modelo em uma interface interativa e intuitiva, que permite simulações e previsões em tempo real.
 
 ---
 
@@ -161,51 +159,11 @@ Para executar o notebook de análise exploratória:
 
 ---
 
-## 📊 Resultados e Pipeline
-
-O desenvolvimento seguiu um pipeline estruturado de Machine Learning:
-
-### 1. Definição do Problema
-Classificação multiclasse para prever o nível de estresse em três categorias: Baixo, Médio e Alto.
-
-### 2. Coleta e Armazenamento
-Dataset público do Kaggle armazenado em servidor MinIO local, simulando ambiente de produção.
-
-### 3. Análise Exploratória
-A análise revelou um dataset de excelente qualidade:
-- Sem valores ausentes ou duplicados
-- Balanceamento perfeito entre as classes
-- 20 features relevantes e correlacionadas com a variável-alvo
-
-### 4. Pré-processamento
-Divisão estratificada dos dados em treino (80%) e teste (20%), mantendo a proporção das classes.
-
-### 5. Modelagem
-Três modelos foram treinados e comparados:
-- **DummyClassifier** (baseline)
-- **DecisionTreeClassifier**
-- **RandomForestClassifier** ✅
-
-O Random Forest foi selecionado por apresentar o melhor desempenho, com **89% de acurácia**.
-
-### 6. Deploy
-Modelo disponibilizado através de dashboard interativo em Streamlit, permitindo previsões em tempo real com interface intuitiva.
-
----
-
 ## 📚 Fonte dos Dados
 
 Dataset público disponível no Kaggle:
 
 **[Student Stress Factors - A Comprehensive Analysis](https://www.kaggle.com/datasets/rxnach/student-stress-factors-a-comprehensive-analysis/data)**  
 Autor: RUCHI NACHANKAR
-
-A escolha de um dataset público permitiu focar nas etapas de modelagem e deploy, que são o escopo principal do desafio.
-
----
-
-## ⚖️ Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
 ---

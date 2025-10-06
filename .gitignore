@@ -7,9 +7,6 @@ minio/*
 *.py[cod]
 *$py.class
 
-# Windsurf AI assistant
-.windsurf/
-
 # C extensions
 *.so
 
